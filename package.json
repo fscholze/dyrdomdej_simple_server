@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "types": "strapi ts:generate-types --verbose"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/strapi": "4.5.6",
+    "@strapi/plugin-users-permissions": "4.5.6",
+    "@strapi/plugin-i18n": "4.5.6",
+    "mysql": "2.18.1"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "d61936e9-3da9-4b48-992b-c6dc4175084f"
+  },
+  "engines": {
+    "node": ">=14.19.1",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

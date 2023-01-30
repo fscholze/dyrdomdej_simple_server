@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wording_lists",
+  "info": {
+    "singularName": "wording-list",
+    "pluralName": "wording-lists",
+    "displayName": "WordingList",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "words": {
+      "type": "text",
+      "required": true
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "wording_lists"
+    }
+  }
+}

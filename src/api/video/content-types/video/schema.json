@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "videos",
+  "info": {
+    "singularName": "video",
+    "pluralName": "videos",
+    "displayName": "Widea",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "videos"
+    },
+    "isLive": {
+      "type": "boolean",
+      "required": true
+    },
+    "youtubeLink": {
+      "type": "string",
+      "required": true,
+      "regex": "https://youtu.be/[a-zA-Z0-9]+"
+    }
+  }
+}

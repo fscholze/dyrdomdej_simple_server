@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_wording_line_wording_lists",
+  "info": {
+    "displayName": "WordingList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "partOfSpeech": {
+      "type": "enumeration",
+      "enum": [
+        "Substantiv",
+        "Verb",
+        "Adjektiv"
+      ],
+      "required": true
+    },
+    "sorbian": {
+      "type": "string",
+      "required": true
+    },
+    "german": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
