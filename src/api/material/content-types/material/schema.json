@@ -16,10 +16,6 @@
       "type": "string",
       "required": true
     },
-    "text": {
-      "type": "richtext",
-      "required": true
-    },
     "cover": {
       "type": "media",
       "multiple": false,
@@ -48,6 +44,13 @@
     "isLive": {
       "type": "boolean",
       "required": true
+    },
+    "text": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }
