@@ -6,12 +6,17 @@ export default [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:'],
+          'connect-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            '*.amazonaws.com'
+          ],
           'img-src': [
             "'self'",
             'data:',
             'blob:',
-            '*.amazonaws.com',
+            '*.amazonaws.com'
           ],
           'media-src': [
             "'self'",
