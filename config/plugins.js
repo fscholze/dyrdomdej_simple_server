@@ -1,6 +1,7 @@
-export default ({ env }) => ({
+module.exports = ({ env }) => ({
+  // ...
   upload: {
-    config: {         
+    config: {
       provider: 'aws-s3',
       providerOptions: {
         accessKeyId: env('AWS_ACCESS_KEY_ID'),
@@ -10,6 +11,12 @@ export default ({ env }) => ({
           Bucket: env('AWS_BUCKET'),
         },
       },
+      actionOptions: {
+        upload: {},
+        uploadStream: {},
+        delete: {},
+      },
     },
   },
+  // ...
 });
