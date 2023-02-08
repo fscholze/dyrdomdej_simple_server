@@ -42,9 +42,9 @@
         "images"
       ]
     },
-    "topic": {
+    "topics": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::topic.topic",
       "inversedBy": "songs"
     },

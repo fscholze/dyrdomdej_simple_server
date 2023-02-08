@@ -24,18 +24,6 @@
         "images"
       ]
     },
-    "materials": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::material.material",
-      "mappedBy": "topic"
-    },
-    "songs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::song.song",
-      "mappedBy": "topic"
-    },
     "wording_lists": {
       "type": "relation",
       "relation": "oneToMany",
@@ -46,11 +34,23 @@
       "type": "boolean",
       "required": true
     },
+    "materials": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::material.material",
+      "mappedBy": "topics"
+    },
+    "songs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::song.song",
+      "mappedBy": "topics"
+    },
     "videos": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::video.video",
-      "mappedBy": "topic"
+      "mappedBy": "topics"
     }
   }
 }

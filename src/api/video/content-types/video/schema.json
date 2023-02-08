@@ -16,9 +16,9 @@
       "type": "string",
       "required": true
     },
-    "topic": {
+    "topics": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::topic.topic",
       "inversedBy": "videos"
     },
