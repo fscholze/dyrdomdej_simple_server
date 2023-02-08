@@ -17,8 +17,10 @@ import {
   IntegerAttribute,
   DecimalAttribute,
   SetMinMax,
-  RichTextAttribute,
+  SingleTypeSchema,
   MediaAttribute,
+  RichTextAttribute,
+  CustomField,
   TextAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
@@ -391,6 +393,49 @@ export interface PluginUploadFolder extends CollectionTypeSchema {
   };
 }
 
+export interface PluginI18NLocale extends CollectionTypeSchema {
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: StringAttribute &
+      SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: StringAttribute & UniqueAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface PluginUsersPermissionsPermission extends CollectionTypeSchema {
   info: {
     name: 'permission';
@@ -538,42 +583,32 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
-export interface PluginI18NLocale extends CollectionTypeSchema {
+export interface ApiActiveTopicActiveTopic extends SingleTypeSchema {
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
+    singularName: 'active-topic';
+    pluralName: 'active-topics';
+    displayName: 'Aktualny Tema';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: StringAttribute &
-      SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
-    code: StringAttribute & UniqueAttribute;
+    tema: RelationAttribute<
+      'api::active-topic.active-topic',
+      'oneToOne',
+      'api::topic.topic'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
-      'plugin::i18n.locale',
+      'api::active-topic.active-topic',
       'oneToOne',
       'admin::user'
     > &
       PrivateAttribute;
     updatedBy: RelationAttribute<
-      'plugin::i18n.locale',
+      'api::active-topic.active-topic',
       'oneToOne',
       'admin::user'
     > &
@@ -593,15 +628,21 @@ export interface ApiMaterialMaterial extends CollectionTypeSchema {
   };
   attributes: {
     title: StringAttribute & RequiredAttribute;
-    text: RichTextAttribute & RequiredAttribute;
     cover: MediaAttribute & RequiredAttribute;
-    downloadFiles: MediaAttribute;
-    topic: RelationAttribute<
+    downloads: MediaAttribute;
+    topics: RelationAttribute<
       'api::material.material',
-      'manyToOne',
+      'manyToMany',
       'api::topic.topic'
     >;
     isLive: BooleanAttribute & RequiredAttribute;
+    text: RichTextAttribute &
+      CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -632,9 +673,19 @@ export interface ApiSongSong extends CollectionTypeSchema {
   attributes: {
     title: StringAttribute & RequiredAttribute;
     downloads: MediaAttribute;
-    text: RichTextAttribute & RequiredAttribute;
+    text: RichTextAttribute &
+      CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     cover: MediaAttribute & RequiredAttribute;
-    topic: RelationAttribute<'api::song.song', 'manyToOne', 'api::topic.topic'>;
+    topics: RelationAttribute<
+      'api::song.song',
+      'manyToMany',
+      'api::topic.topic'
+    >;
     isLive: BooleanAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -659,21 +710,25 @@ export interface ApiTopicTopic extends CollectionTypeSchema {
   attributes: {
     title: StringAttribute & RequiredAttribute;
     image: MediaAttribute & RequiredAttribute;
-    materials: RelationAttribute<
-      'api::topic.topic',
-      'oneToMany',
-      'api::material.material'
-    >;
-    songs: RelationAttribute<'api::topic.topic', 'oneToMany', 'api::song.song'>;
     wording_lists: RelationAttribute<
       'api::topic.topic',
       'oneToMany',
       'api::wording-list.wording-list'
     >;
     isLive: BooleanAttribute & RequiredAttribute;
+    materials: RelationAttribute<
+      'api::topic.topic',
+      'manyToMany',
+      'api::material.material'
+    >;
+    songs: RelationAttribute<
+      'api::topic.topic',
+      'manyToMany',
+      'api::song.song'
+    >;
     videos: RelationAttribute<
       'api::topic.topic',
-      'oneToMany',
+      'manyToMany',
       'api::video.video'
     >;
     createdAt: DateTimeAttribute;
@@ -706,15 +761,13 @@ export interface ApiVideoVideo extends CollectionTypeSchema {
   };
   attributes: {
     title: StringAttribute & RequiredAttribute;
-    topic: RelationAttribute<
+    topics: RelationAttribute<
       'api::video.video',
-      'manyToOne',
+      'manyToMany',
       'api::topic.topic'
     >;
     isLive: BooleanAttribute & RequiredAttribute;
-    youtubeLink: StringAttribute &
-      RequiredAttribute &
-      DefaultTo<'https://youtu.be/SydM7NwB6sw'>;
+    youtubeLink: StringAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -792,10 +845,11 @@ declare global {
       'admin::api-token-permission': AdminApiTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::active-topic.active-topic': ApiActiveTopicActiveTopic;
       'api::material.material': ApiMaterialMaterial;
       'api::song.song': ApiSongSong;
       'api::topic.topic': ApiTopicTopic;

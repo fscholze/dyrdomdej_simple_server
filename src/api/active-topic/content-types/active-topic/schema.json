@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "active_topics",
+  "info": {
+    "singularName": "active-topic",
+    "pluralName": "active-topics",
+    "displayName": "Aktualny Tema"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tema": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::topic.topic"
+    }
+  }
+}
