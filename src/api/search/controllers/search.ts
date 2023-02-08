@@ -39,23 +39,60 @@ const searchWord = query.word.toLowerCase()
           populate: '*',
         }
       );
+
+      const videos = await strapi.entityService.findMany(
+        "api::video.video",
+        {
+          filters:{
+          $and: [
+            // {
+            //   isLive: {$eq: true},
+            // },
+            // {
+            //   topics:  {$gt:0}
+            // },
+          ]},
+          populate: '*',
+        }
+      );
+
+
 const filteredMaterials = []
         for (let index = 0; index < materials.length; index++) {
           const material = materials[index];
-          if (material.title.toLowerCase().includes(searchWord)) {
+
+          if (material.title?.toLowerCase().includes(searchWord)) {
             filteredMaterials.push(material)
-          }
+          } else if (material.text?.toLowerCase().includes(searchWord)){
+              filteredMaterials.push(material)
+            }  else if (material.topics?.find(t => t.title?.toLowerCase().includes(searchWord))){
+              filteredMaterials.push(material)
+            }
         }
 
         const filteredSongs = []
         for (let index = 0; index < songs.length; index++) {
           const song = songs[index];
-          if (song.title.toLowerCase().includes(searchWord)) {
+          if (song.title?.toLowerCase().includes(searchWord)) {
             filteredSongs.push(song)
-          }
+          } else if (song.text?.toLowerCase().includes(searchWord)){
+            filteredSongs.push(song)
+            }  else if (song.topics?.find(t => t.title?.toLowerCase().includes(searchWord))){
+              filteredSongs.push(song)
+            }
         }
 
-    ctx.body = {materials:filteredMaterials, songs:filteredSongs};
+        const filteredVideos = []
+        for (let index = 0; index < videos.length; index++) {
+          const video = videos[index];
+          if (video.title?.toLowerCase().includes(searchWord)) {
+            filteredVideos.push(video)
+          }  else if (video.topics?.find(t => t.title?.toLowerCase().includes(searchWord))){
+              filteredVideos.push(video)
+            }
+        }
+
+    ctx.body = {materials:filteredMaterials, songs:filteredSongs, videos:filteredVideos};
 
     } catch (err) {
       ctx.body = err;
