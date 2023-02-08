@@ -55,7 +55,7 @@ const filteredMaterials = []
           }
         }
 
-    ctx.body = {mateials:filteredMaterials, songs:filteredSongs};
+    ctx.body = {materials:filteredMaterials, songs:filteredSongs};
 
     } catch (err) {
       ctx.body = err;
