@@ -616,6 +616,36 @@ export interface ApiActiveTopicActiveTopic extends SingleTypeSchema {
   };
 }
 
+export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
+  info: {
+    singularName: 'audio-image';
+    pluralName: 'audio-images';
+    displayName: 'AudioImage';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: StringAttribute;
+    image: MediaAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::audio-image.audio-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::audio-image.audio-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiMaterialMaterial extends CollectionTypeSchema {
   info: {
     singularName: 'material';
@@ -822,6 +852,18 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
   };
 }
 
+export interface AudioImageButtonAudioImageButton extends ComponentSchema {
+  info: {
+    displayName: 'AudioImageButton';
+    description: '';
+  };
+  attributes: {
+    text: StringAttribute;
+    image: MediaAttribute;
+    sound: MediaAttribute;
+  };
+}
+
 export interface WordingLineWordingList extends ComponentSchema {
   info: {
     displayName: 'WordingList';
@@ -850,11 +892,13 @@ declare global {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::active-topic.active-topic': ApiActiveTopicActiveTopic;
+      'api::audio-image.audio-image': ApiAudioImageAudioImage;
       'api::material.material': ApiMaterialMaterial;
       'api::song.song': ApiSongSong;
       'api::topic.topic': ApiTopicTopic;
       'api::video.video': ApiVideoVideo;
       'api::wording-list.wording-list': ApiWordingListWordingList;
+      'audio-image-button.audio-image-button': AudioImageButtonAudioImageButton;
       'wording-line.wording-list': WordingLineWordingList;
     }
   }

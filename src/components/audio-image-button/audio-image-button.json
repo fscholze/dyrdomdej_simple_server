@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_audio_image_button_audio_image_buttons",
+  "info": {
+    "displayName": "AudioImageButton",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "sound": {
+      "allowedTypes": [
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

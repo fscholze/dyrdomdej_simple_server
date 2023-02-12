@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audio_images",
+  "info": {
+    "singularName": "audio-image",
+    "pluralName": "audio-images",
+    "displayName": "AudioImage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
