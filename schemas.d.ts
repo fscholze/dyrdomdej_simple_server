@@ -878,6 +878,17 @@ export interface AudioImageButtonAudioImageButton extends ComponentSchema {
     text: StringAttribute & RequiredAttribute;
     image: MediaAttribute & RequiredAttribute;
     sound: MediaAttribute;
+    x: DecimalAttribute &
+      SetMinMax<{
+        min: 0;
+        max: 100;
+      }>;
+    y: DecimalAttribute &
+      RequiredAttribute &
+      SetMinMax<{
+        min: 0;
+        max: 100;
+      }>;
   };
 }
 
