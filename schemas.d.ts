@@ -629,7 +629,7 @@ export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
   };
   attributes: {
     title: StringAttribute & RequiredAttribute;
-    cover: MediaAttribute & RequiredAttribute;
+    image: MediaAttribute & RequiredAttribute;
     topics: RelationAttribute<
       'api::audio-image.audio-image',
       'manyToMany',
