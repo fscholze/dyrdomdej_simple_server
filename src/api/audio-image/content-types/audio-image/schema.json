@@ -23,7 +23,7 @@
         "images"
       ]
     },
-    "temas": {
+    "topics": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::topic.topic",

@@ -594,7 +594,7 @@ export interface ApiActiveTopicActiveTopic extends SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    tema: RelationAttribute<
+    topic: RelationAttribute<
       'api::active-topic.active-topic',
       'oneToOne',
       'api::topic.topic'
@@ -630,7 +630,7 @@ export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
   attributes: {
     title: StringAttribute;
     cover: MediaAttribute;
-    temas: RelationAttribute<
+    topics: RelationAttribute<
       'api::audio-image.audio-image',
       'manyToMany',
       'api::topic.topic'

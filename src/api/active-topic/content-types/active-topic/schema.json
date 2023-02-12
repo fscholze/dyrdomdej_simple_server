@@ -11,7 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "tema": {
+    "topic": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::topic.topic"
