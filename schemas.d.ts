@@ -861,6 +861,7 @@ export interface AudioImageButtonAudioImageButton extends ComponentSchema {
     text: StringAttribute;
     image: MediaAttribute;
     sound: MediaAttribute;
+    title: StringAttribute;
   };
 }
 

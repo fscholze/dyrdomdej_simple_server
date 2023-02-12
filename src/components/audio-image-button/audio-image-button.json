@@ -10,18 +10,23 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "sound": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "title": {
+      "type": "string"
     }
   }
 }
