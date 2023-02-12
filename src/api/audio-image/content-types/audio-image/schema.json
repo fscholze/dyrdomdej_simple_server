@@ -4,7 +4,8 @@
   "info": {
     "singularName": "audio-image",
     "pluralName": "audio-images",
-    "displayName": "AudioImage"
+    "displayName": "AudioImage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,12 +15,24 @@
     "title": {
       "type": "string"
     },
-    "image": {
+    "cover": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "temas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::topic.topic",
+      "inversedBy": "audio_images"
+    },
+    "audioImages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "audio-image-button.audio-image-button"
     }
   }
 }

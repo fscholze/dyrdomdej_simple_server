@@ -19,6 +19,7 @@ import {
   SetMinMax,
   SingleTypeSchema,
   MediaAttribute,
+  ComponentAttribute,
   RichTextAttribute,
   CustomField,
   TextAttribute,
@@ -621,13 +622,23 @@ export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
     singularName: 'audio-image';
     pluralName: 'audio-images';
     displayName: 'AudioImage';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: StringAttribute;
-    image: MediaAttribute;
+    cover: MediaAttribute;
+    temas: RelationAttribute<
+      'api::audio-image.audio-image',
+      'manyToMany',
+      'api::topic.topic'
+    >;
+    audioImages: ComponentAttribute<
+      'audio-image-button.audio-image-button',
+      true
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -761,6 +772,11 @@ export interface ApiTopicTopic extends CollectionTypeSchema {
       'manyToMany',
       'api::video.video'
     >;
+    audio_images: RelationAttribute<
+      'api::topic.topic',
+      'manyToMany',
+      'api::audio-image.audio-image'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -861,7 +877,6 @@ export interface AudioImageButtonAudioImageButton extends ComponentSchema {
     text: StringAttribute;
     image: MediaAttribute;
     sound: MediaAttribute;
-    title: StringAttribute;
   };
 }
 

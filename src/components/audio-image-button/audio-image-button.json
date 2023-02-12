@@ -1,5 +1,5 @@
 {
-  "collectionName": "components_audio_image_button_audio_image_buttons",
+  "collectionName": "components_audio_img_btn_audio_img_btns",
   "info": {
     "displayName": "AudioImageButton",
     "description": ""
@@ -24,9 +24,6 @@
       "allowedTypes": [
         "audios"
       ]
-    },
-    "title": {
-      "type": "string"
     }
   }
 }
