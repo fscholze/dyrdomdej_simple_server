@@ -628,8 +628,8 @@ export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    title: StringAttribute;
-    cover: MediaAttribute;
+    title: StringAttribute & RequiredAttribute;
+    cover: MediaAttribute & RequiredAttribute;
     topics: RelationAttribute<
       'api::audio-image.audio-image',
       'manyToMany',
@@ -639,6 +639,7 @@ export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
       'audio-image-button.audio-image-button',
       true
     >;
+    isLive: BooleanAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -874,8 +875,8 @@ export interface AudioImageButtonAudioImageButton extends ComponentSchema {
     description: '';
   };
   attributes: {
-    text: StringAttribute;
-    image: MediaAttribute;
+    text: StringAttribute & RequiredAttribute;
+    image: MediaAttribute & RequiredAttribute;
     sound: MediaAttribute;
   };
 }
