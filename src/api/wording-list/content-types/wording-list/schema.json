@@ -4,7 +4,7 @@
   "info": {
     "singularName": "wording-list",
     "pluralName": "wording-lists",
-    "displayName": "WordingList",
+    "displayName": "Slowne Lisciny",
     "description": ""
   },
   "options": {
@@ -16,15 +16,16 @@
       "type": "string",
       "required": true
     },
-    "words": {
-      "type": "text",
-      "required": true
-    },
     "topic": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::topic.topic",
       "inversedBy": "wording_lists"
+    },
+    "words": {
+      "type": "component",
+      "repeatable": true,
+      "component": "wording-line.wording-list"
     }
   }
 }

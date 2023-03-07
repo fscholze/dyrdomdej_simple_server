@@ -22,7 +22,6 @@ import {
   ComponentAttribute,
   RichTextAttribute,
   CustomField,
-  TextAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -837,7 +836,7 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
   info: {
     singularName: 'wording-list';
     pluralName: 'wording-lists';
-    displayName: 'WordingList';
+    displayName: 'Slowne Lisciny';
     description: '';
   };
   options: {
@@ -845,12 +844,12 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
   };
   attributes: {
     title: StringAttribute & RequiredAttribute;
-    words: TextAttribute & RequiredAttribute;
     topic: RelationAttribute<
       'api::wording-list.wording-list',
       'manyToOne',
       'api::topic.topic'
     >;
+    words: ComponentAttribute<'wording-line.wording-list', true>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -894,7 +893,7 @@ export interface AudioImageButtonAudioImageButton extends ComponentSchema {
 
 export interface WordingLineWordingList extends ComponentSchema {
   info: {
-    displayName: 'WordingList';
+    displayName: 'WordingListEntry';
     description: '';
   };
   attributes: {
