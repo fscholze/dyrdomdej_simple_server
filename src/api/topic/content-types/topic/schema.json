@@ -57,6 +57,12 @@
       "relation": "manyToMany",
       "target": "api::audio-image.audio-image",
       "mappedBy": "topics"
+    },
+    "keywords": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::keyword.keyword",
+      "mappedBy": "topics"
     }
   }
 }

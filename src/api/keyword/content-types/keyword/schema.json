@@ -57,6 +57,12 @@
       "relation": "manyToMany",
       "target": "api::video.video",
       "inversedBy": "keywords"
+    },
+    "topics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::topic.topic",
+      "inversedBy": "keywords"
     }
   }
 }

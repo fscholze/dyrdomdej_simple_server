@@ -701,6 +701,11 @@ export interface ApiKeywordKeyword extends CollectionTypeSchema {
       'manyToMany',
       'api::video.video'
     >;
+    topics: RelationAttribute<
+      'api::keyword.keyword',
+      'manyToMany',
+      'api::topic.topic'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -848,6 +853,11 @@ export interface ApiTopicTopic extends CollectionTypeSchema {
       'api::topic.topic',
       'manyToMany',
       'api::audio-image.audio-image'
+    >;
+    keywords: RelationAttribute<
+      'api::topic.topic',
+      'manyToMany',
+      'api::keyword.keyword'
     >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
