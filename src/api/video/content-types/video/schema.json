@@ -30,6 +30,12 @@
       "type": "string",
       "required": true,
       "regex": "https://youtu.be/[_a-zA-Z0-9]+"
+    },
+    "keywords": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::keyword.keyword",
+      "mappedBy": "videos"
     }
   }
 }

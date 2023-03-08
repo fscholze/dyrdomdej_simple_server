@@ -51,6 +51,12 @@
     "isLive": {
       "type": "boolean",
       "required": true
+    },
+    "keywords": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::keyword.keyword",
+      "mappedBy": "songs"
     }
   }
 }

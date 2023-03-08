@@ -639,6 +639,11 @@ export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
       true
     >;
     isLive: BooleanAttribute & RequiredAttribute;
+    keywords: RelationAttribute<
+      'api::audio-image.audio-image',
+      'manyToMany',
+      'api::keyword.keyword'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -650,6 +655,63 @@ export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       'api::audio-image.audio-image',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiKeywordKeyword extends CollectionTypeSchema {
+  info: {
+    singularName: 'keyword';
+    pluralName: 'keywords';
+    displayName: 'Keyword';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    image: MediaAttribute & RequiredAttribute;
+    wording_lists: RelationAttribute<
+      'api::keyword.keyword',
+      'manyToMany',
+      'api::wording-list.wording-list'
+    >;
+    isLive: BooleanAttribute & RequiredAttribute;
+    songs: RelationAttribute<
+      'api::keyword.keyword',
+      'manyToMany',
+      'api::song.song'
+    >;
+    audio_images: RelationAttribute<
+      'api::keyword.keyword',
+      'manyToMany',
+      'api::audio-image.audio-image'
+    >;
+    materials: RelationAttribute<
+      'api::keyword.keyword',
+      'manyToMany',
+      'api::material.material'
+    >;
+    videos: RelationAttribute<
+      'api::keyword.keyword',
+      'manyToMany',
+      'api::video.video'
+    >;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::keyword.keyword',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::keyword.keyword',
       'oneToOne',
       'admin::user'
     > &
@@ -684,6 +746,11 @@ export interface ApiMaterialMaterial extends CollectionTypeSchema {
           preset: 'toolbar';
         }
       >;
+    keywords: RelationAttribute<
+      'api::material.material',
+      'manyToMany',
+      'api::keyword.keyword'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     createdBy: RelationAttribute<
@@ -728,6 +795,11 @@ export interface ApiSongSong extends CollectionTypeSchema {
       'api::topic.topic'
     >;
     isLive: BooleanAttribute & RequiredAttribute;
+    keywords: RelationAttribute<
+      'api::song.song',
+      'manyToMany',
+      'api::keyword.keyword'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -814,6 +886,11 @@ export interface ApiVideoVideo extends CollectionTypeSchema {
     >;
     isLive: BooleanAttribute & RequiredAttribute;
     youtubeLink: StringAttribute & RequiredAttribute;
+    keywords: RelationAttribute<
+      'api::video.video',
+      'manyToMany',
+      'api::keyword.keyword'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -850,6 +927,11 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
       'api::topic.topic'
     >;
     words: ComponentAttribute<'wording-line.wording-list', true>;
+    keywords: RelationAttribute<
+      'api::wording-list.wording-list',
+      'manyToMany',
+      'api::keyword.keyword'
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -920,6 +1002,7 @@ declare global {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::active-topic.active-topic': ApiActiveTopicActiveTopic;
       'api::audio-image.audio-image': ApiAudioImageAudioImage;
+      'api::keyword.keyword': ApiKeywordKeyword;
       'api::material.material': ApiMaterialMaterial;
       'api::song.song': ApiSongSong;
       'api::topic.topic': ApiTopicTopic;

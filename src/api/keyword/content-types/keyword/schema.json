@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "keywords",
+  "info": {
+    "singularName": "keyword",
+    "pluralName": "keywords",
+    "displayName": "Keyword",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "wording_lists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::wording-list.wording-list",
+      "inversedBy": "keywords"
+    },
+    "isLive": {
+      "type": "boolean",
+      "required": true
+    },
+    "songs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::song.song",
+      "inversedBy": "keywords"
+    },
+    "audio_images": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::audio-image.audio-image",
+      "inversedBy": "keywords"
+    },
+    "materials": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::material.material",
+      "inversedBy": "keywords"
+    },
+    "videos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::video.video",
+      "inversedBy": "keywords"
+    }
+  }
+}
