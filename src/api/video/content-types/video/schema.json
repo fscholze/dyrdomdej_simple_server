@@ -29,7 +29,7 @@
     "youtubeLink": {
       "type": "string",
       "required": true,
-      "regex": "https://youtu.be/[_a-zA-Z0-9]+"
+      "regex": "https://youtu.be/[-_a-zA-Z0-9]+"
     },
     "keywords": {
       "type": "relation",
