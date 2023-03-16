@@ -24,12 +24,6 @@
         "images"
       ]
     },
-    "wording_lists": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::wording-list.wording-list",
-      "mappedBy": "topic"
-    },
     "isLive": {
       "type": "boolean",
       "required": true
@@ -62,6 +56,12 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::keyword.keyword",
+      "mappedBy": "topics"
+    },
+    "wording_lists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wording-list.wording-list",
       "mappedBy": "topics"
     }
   }

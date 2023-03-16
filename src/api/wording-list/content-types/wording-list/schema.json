@@ -16,7 +16,7 @@
       "type": "string",
       "required": true
     },
-    "topic": {
+    "topics": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::topic.topic",
@@ -32,6 +32,14 @@
       "relation": "manyToMany",
       "target": "api::keyword.keyword",
       "mappedBy": "wording_lists"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }
