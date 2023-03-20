@@ -6,15 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "partOfSpeech": {
-      "type": "enumeration",
-      "enum": [
-        "Substantiv",
-        "Verb",
-        "Adjektiv"
-      ],
-      "required": true
-    },
     "sorbian": {
       "type": "string",
       "required": true

@@ -990,8 +990,6 @@ export interface WordingLineWordingList extends ComponentSchema {
     description: '';
   };
   attributes: {
-    partOfSpeech: EnumerationAttribute<['Substantiv', 'Verb', 'Adjektiv']> &
-      RequiredAttribute;
     sorbian: StringAttribute & RequiredAttribute;
     german: StringAttribute & RequiredAttribute;
   };
