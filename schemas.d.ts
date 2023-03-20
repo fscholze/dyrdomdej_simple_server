@@ -828,11 +828,6 @@ export interface ApiTopicTopic extends CollectionTypeSchema {
   attributes: {
     title: StringAttribute & RequiredAttribute;
     image: MediaAttribute & RequiredAttribute;
-    wording_lists: RelationAttribute<
-      'api::topic.topic',
-      'oneToMany',
-      'api::wording-list.wording-list'
-    >;
     isLive: BooleanAttribute & RequiredAttribute;
     materials: RelationAttribute<
       'api::topic.topic',
@@ -858,6 +853,11 @@ export interface ApiTopicTopic extends CollectionTypeSchema {
       'api::topic.topic',
       'manyToMany',
       'api::keyword.keyword'
+    >;
+    wording_lists: RelationAttribute<
+      'api::topic.topic',
+      'oneToMany',
+      'api::wording-list.wording-list'
     >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -931,7 +931,7 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
   };
   attributes: {
     title: StringAttribute & RequiredAttribute;
-    topic: RelationAttribute<
+    topics: RelationAttribute<
       'api::wording-list.wording-list',
       'manyToOne',
       'api::topic.topic'
@@ -942,6 +942,7 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
       'manyToMany',
       'api::keyword.keyword'
     >;
+    cover: MediaAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
