@@ -856,7 +856,7 @@ export interface ApiTopicTopic extends CollectionTypeSchema {
     >;
     wording_lists: RelationAttribute<
       'api::topic.topic',
-      'oneToMany',
+      'manyToMany',
       'api::wording-list.wording-list'
     >;
     createdAt: DateTimeAttribute;
@@ -933,7 +933,7 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
     title: StringAttribute & RequiredAttribute;
     topics: RelationAttribute<
       'api::wording-list.wording-list',
-      'manyToOne',
+      'manyToMany',
       'api::topic.topic'
     >;
     words: ComponentAttribute<'wording-line.wording-list', true>;

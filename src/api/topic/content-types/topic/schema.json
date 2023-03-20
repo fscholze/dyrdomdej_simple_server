@@ -60,7 +60,7 @@
     },
     "wording_lists": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::wording-list.wording-list",
       "mappedBy": "topics"
     }
