@@ -40,6 +40,10 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "isLive": {
+      "type": "boolean",
+      "required": true
     }
   }
 }

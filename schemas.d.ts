@@ -943,6 +943,7 @@ export interface ApiWordingListWordingList extends CollectionTypeSchema {
       'api::keyword.keyword'
     >;
     cover: MediaAttribute & RequiredAttribute;
+    isLive: BooleanAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
