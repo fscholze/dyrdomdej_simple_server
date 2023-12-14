@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_category_path_category_paths",
+  "info": {
+    "displayName": "category-path"
+  },
+  "options": {},
+  "attributes": {
+    "topic": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::topic.topic"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::keyword.keyword"
+    },
+    "sub_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::keyword.keyword"
+    }
+  }
+}

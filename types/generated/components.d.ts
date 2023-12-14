@@ -24,6 +24,30 @@ export interface AudioImageButtonAudioImageButton extends Schema.Component {
   };
 }
 
+export interface CategoryPathCategoryPath extends Schema.Component {
+  collectionName: 'components_category_path_category_paths';
+  info: {
+    displayName: 'category-path';
+  };
+  attributes: {
+    topic: Attribute.Relation<
+      'category-path.category-path',
+      'oneToOne',
+      'api::topic.topic'
+    >;
+    category: Attribute.Relation<
+      'category-path.category-path',
+      'oneToOne',
+      'api::keyword.keyword'
+    >;
+    sub_category: Attribute.Relation<
+      'category-path.category-path',
+      'oneToOne',
+      'api::keyword.keyword'
+    >;
+  };
+}
+
 export interface WordingLineWordingList extends Schema.Component {
   collectionName: 'components_wording_line_wording_lists';
   info: {
@@ -40,6 +64,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'audio-image-button.audio-image-button': AudioImageButtonAudioImageButton;
+      'category-path.category-path': CategoryPathCategoryPath;
       'wording-line.wording-list': WordingLineWordingList;
     }
   }

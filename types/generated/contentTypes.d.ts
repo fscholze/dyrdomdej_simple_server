@@ -854,6 +854,7 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
       'manyToMany',
       'api::keyword.keyword'
     >;
+    categories: Attribute.Component<'category-path.category-path', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
