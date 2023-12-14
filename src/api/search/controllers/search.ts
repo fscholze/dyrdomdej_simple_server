@@ -58,7 +58,8 @@ const searchWord = query.word.toLowerCase()
 
 
 const filteredMaterials = []
-        for (let index = 0; index < materials.length; index++) {
+        
+for (let index = 0; index < (materials.length as number); index++) {
           const material = materials[index];
 
           if (material.title?.toLowerCase().includes(searchWord)) {
@@ -71,7 +72,7 @@ const filteredMaterials = []
         }
 
         const filteredSongs = []
-        for (let index = 0; index < songs.length; index++) {
+        for (let index = 0; index < (songs.length as number); index++) {
           const song = songs[index];
           if (song.title?.toLowerCase().includes(searchWord)) {
             filteredSongs.push(song)
@@ -83,7 +84,7 @@ const filteredMaterials = []
         }
 
         const filteredVideos = []
-        for (let index = 0; index < videos.length; index++) {
+        for (let index = 0; index < (videos.length as number); index++) {
           const video = videos[index];
           if (video.title?.toLowerCase().includes(searchWord)) {
             filteredVideos.push(video)
