@@ -28,6 +28,7 @@ export interface CategoryPathCategoryPath extends Schema.Component {
   collectionName: 'components_category_path_category_paths';
   info: {
     displayName: 'category-path';
+    description: '';
   };
   attributes: {
     topic: Attribute.Relation<
@@ -38,12 +39,12 @@ export interface CategoryPathCategoryPath extends Schema.Component {
     category: Attribute.Relation<
       'category-path.category-path',
       'oneToOne',
-      'api::keyword.keyword'
+      'api::category.category'
     >;
     sub_category: Attribute.Relation<
       'category-path.category-path',
       'oneToOne',
-      'api::keyword.keyword'
+      'api::subcategory.subcategory'
     >;
   };
 }

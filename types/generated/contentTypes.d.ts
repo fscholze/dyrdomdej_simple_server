@@ -758,6 +758,37 @@ export interface ApiAudioImageAudioImage extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Kategorija';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiKeywordKeyword extends Schema.CollectionType {
   collectionName: 'keywords';
   info: {
@@ -911,6 +942,36 @@ export interface ApiSongSong extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::song.song', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::song.song', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSubcategorySubcategory extends Schema.CollectionType {
+  collectionName: 'subcategories';
+  info: {
+    singularName: 'subcategory';
+    pluralName: 'subcategories';
+    displayName: 'Podkategorija';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::subcategory.subcategory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::subcategory.subcategory',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1083,9 +1144,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::active-topic.active-topic': ApiActiveTopicActiveTopic;
       'api::audio-image.audio-image': ApiAudioImageAudioImage;
+      'api::category.category': ApiCategoryCategory;
       'api::keyword.keyword': ApiKeywordKeyword;
       'api::material.material': ApiMaterialMaterial;
       'api::song.song': ApiSongSong;
+      'api::subcategory.subcategory': ApiSubcategorySubcategory;
       'api::topic.topic': ApiTopicTopic;
       'api::video.video': ApiVideoVideo;
       'api::wording-list.wording-list': ApiWordingListWordingList;

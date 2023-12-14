@@ -1,7 +1,8 @@
 {
   "collectionName": "components_category_path_category_paths",
   "info": {
-    "displayName": "category-path"
+    "displayName": "category-path",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,12 +14,12 @@
     "category": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::keyword.keyword"
+      "target": "api::category.category"
     },
     "sub_category": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::keyword.keyword"
+      "target": "api::subcategory.subcategory"
     }
   }
 }
