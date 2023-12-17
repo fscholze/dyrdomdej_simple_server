@@ -886,6 +886,7 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
       'api::keyword.keyword'
     >;
     categories: Attribute.Component<'category-path.category-path', true>;
+    c2: Attribute.Component<'category-path.category-path', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
