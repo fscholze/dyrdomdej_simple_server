@@ -11,15 +11,15 @@
       "relation": "oneToOne",
       "target": "api::topic.topic"
     },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
     "sub_category": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::subcategory.subcategory"
+    },
+    "kategorija": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
     }
   }
 }

@@ -36,15 +36,15 @@ export interface CategoryPathCategoryPath extends Schema.Component {
       'oneToOne',
       'api::topic.topic'
     >;
-    category: Attribute.Relation<
-      'category-path.category-path',
-      'oneToOne',
-      'api::category.category'
-    >;
     sub_category: Attribute.Relation<
       'category-path.category-path',
       'oneToOne',
       'api::subcategory.subcategory'
+    >;
+    kategorija: Attribute.Relation<
+      'category-path.category-path',
+      'oneToOne',
+      'api::category.category'
     >;
   };
 }

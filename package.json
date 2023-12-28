@@ -4,18 +4,20 @@
   "version": "0.1.0",
   "description": "A Strapi application",
   "scripts": {
-    "dev": "strapi develop --debug",
+    "dev": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
+    "generate": "strapi generate",
     "strapi": "strapi",
-    "types": "strapi ts:generate-types --verbose"
+    "types": "strapi ts:generate-types --verbose",
+    "copyTypes": "node copy-types.js"
   },
   "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "^2.0.2",
-    "@strapi/plugin-i18n": "4.15.5",
-    "@strapi/plugin-users-permissions": "4.15.5",
-    "@strapi/provider-upload-aws-s3": "^4.15.5",
-    "@strapi/strapi": "4.15.5",
+    "@_sh/strapi-plugin-ckeditor": "^2.0.4",
+    "@strapi/plugin-i18n": "4.16.2",
+    "@strapi/plugin-users-permissions": "4.16.2",
+    "@strapi/provider-upload-aws-s3": "^4.16.2",
+    "@strapi/strapi": "^4.16.2",
     "mysql": "2.18.1",
     "pg": "^8.9.0",
     "pg-connection-string": "^2.5.0",
