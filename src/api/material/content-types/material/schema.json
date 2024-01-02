@@ -62,12 +62,6 @@
       "type": "component",
       "repeatable": true,
       "component": "category-path.category-path"
-    },
-    "sub_categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::subcategory.subcategory",
-      "inversedBy": "materials"
     }
   }
 }

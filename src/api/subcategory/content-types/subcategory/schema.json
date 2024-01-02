@@ -17,12 +17,6 @@
     },
     "ghj": {
       "type": "integer"
-    },
-    "materials": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::material.material",
-      "mappedBy": "sub_categories"
     }
   }
 }

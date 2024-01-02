@@ -9,8 +9,7 @@
     "build": "strapi build",
     "generate": "strapi generate",
     "strapi": "strapi",
-    "types": "strapi ts:generate-types --verbose",
-    "copyTypes": "node copy-types.js"
+    "types": "strapi ts:generate-types --verbose"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.0.4",

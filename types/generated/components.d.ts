@@ -25,7 +25,7 @@ export interface AudioImageButtonAudioImageButton extends Schema.Component {
 }
 
 export interface CategoryPathCategoryPath extends Schema.Component {
-  collectionName: 'components_category_path_category_paths';
+  collectionName: 'components_cat_path_cat_paths';
   info: {
     displayName: 'category-path';
     description: '';
@@ -41,7 +41,7 @@ export interface CategoryPathCategoryPath extends Schema.Component {
       'oneToOne',
       'api::subcategory.subcategory'
     >;
-    kategorija: Attribute.Relation<
+    category: Attribute.Relation<
       'category-path.category-path',
       'oneToOne',
       'api::category.category'

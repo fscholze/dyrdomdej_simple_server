@@ -59,7 +59,7 @@ const searchWord = query.word.toLowerCase()
 
 const filteredMaterials = []
         
-for (let index = 0; index < (materials.length as number); index++) {
+for (let index = 0; index < ((materials as any[]).length as number); index++) {
           const material = materials[index];
 
           if (material.title?.toLowerCase().includes(searchWord)) {

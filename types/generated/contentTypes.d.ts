@@ -978,11 +978,6 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
       'api::keyword.keyword'
     >;
     categories: Attribute.Component<'category-path.category-path', true>;
-    sub_categories: Attribute.Relation<
-      'api::material.material',
-      'manyToMany',
-      'api::subcategory.subcategory'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1057,11 +1052,6 @@ export interface ApiSubcategorySubcategory extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     ghj: Attribute.Integer;
-    materials: Attribute.Relation<
-      'api::subcategory.subcategory',
-      'manyToMany',
-      'api::material.material'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

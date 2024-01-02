@@ -1,5 +1,5 @@
 {
-  "collectionName": "components_category_path_category_paths",
+  "collectionName": "components_cat_path_cat_paths",
   "info": {
     "displayName": "category-path",
     "description": ""
@@ -16,7 +16,7 @@
       "relation": "oneToOne",
       "target": "api::subcategory.subcategory"
     },
-    "kategorija": {
+    "category": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::category.category"
