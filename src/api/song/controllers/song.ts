@@ -4,4 +4,4 @@
 
 import { factories } from '@strapi/strapi'
 
-export default factories.createCoreController('api::song.song');
+export default factories.createCoreController('api::song.song')

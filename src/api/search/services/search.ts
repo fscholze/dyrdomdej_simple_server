@@ -4,7 +4,7 @@
 
 export default () => ({
   findAll: async () => {
-    console.log({'ctx2':true})
+    console.log({ ctx2: true })
     try {
       // fetching data
       // const entries = await strapi.entityService.findMany(
@@ -43,7 +43,7 @@ export default () => ({
       // return entriesReduced;
       return []
     } catch (err) {
-      return err;
+      return err
     }
-  },
-});
+  }
+})

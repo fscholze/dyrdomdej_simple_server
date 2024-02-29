@@ -1,19 +1,13 @@
-const parse = require('pg-connection-string').parse;
-const config = parse(process.env.DATABASE_URL);
-
 export default ({ env }) => ({
-connection: {
-    client: "postgres",
+  connection: {
+    client: 'mysql',
     connection: {
-      host: config.host,
-      port: config.port,
-      database: config.database,
-      user: config.user,
-      password: config.password,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    },
-    debug: false,
-  },
-});
+      host: env('DATABASE_HOST', 'localhost'),
+      port: env.int('DATABASE_PORT', 3306),
+      database: env('DATABASE_NAME', 'dyrdomdej'),
+      user: env('DATABASE_USERNAME', 'dyrdoadmin'),
+      password: env('DATABASE_PASSWORD', 'mep$hoxagog+6jemkmap1l3v4c'),
+      ssl: env.bool('DATABASE_SSL', false)
+    }
+  }
+})

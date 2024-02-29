@@ -14,17 +14,13 @@
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "sound": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "audios"
-      ]
+      "allowedTypes": ["audios"]
     },
     "x": {
       "type": "decimal",

@@ -1,13 +1,17 @@
 {
   "name": "server",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
   "scripts": {
-    "dev": "strapi develop",
-    "start": "strapi start",
     "build": "strapi build",
+    "dev": "strapi develop",
     "generate": "strapi generate",
+    "start": "strapi start",
     "strapi": "strapi",
     "types": "strapi ts:generate-types --verbose"
   },
@@ -25,15 +29,11 @@
     "react-router-dom": "^5.3.4",
     "styled-components": "^5.3.11"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
-  "strapi": {
-    "uuid": "d61936e9-3da9-4b48-992b-c6dc4175084f"
-  },
   "engines": {
     "node": "18.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "strapi": {
+    "uuid": "d61936e9-3da9-4b48-992b-c6dc4175084f"
+  }
 }
