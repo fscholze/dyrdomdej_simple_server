@@ -1,5 +1,5 @@
-const BUCKET = process.env.AWS_BUCKET;
-const ENDPOINT = `s3.amazonaws.com`;
+const BUCKET = process.env.AWS_BUCKET
+const ENDPOINT = `https://s3.amazonaws.com`
 
 export default ({ env }) => ({
   upload: {
@@ -10,14 +10,14 @@ export default ({ env }) => ({
         secretAccessKey: env('AWS_ACCESS_SECRET'),
         endpoint: ENDPOINT,
         params: {
-          Bucket: env('AWS_BUCKET'),
-        },
+          Bucket: env('AWS_BUCKET')
+        }
       },
       actionOptions: {
         upload: {},
         uploadStream: {},
-        delete: {},
-      },
-    },
-  },
-});
+        delete: {}
+      }
+    }
+  }
+})
