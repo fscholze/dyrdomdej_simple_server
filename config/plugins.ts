@@ -6,11 +6,15 @@ export default ({ env }) => ({
     config: {
       provider: 'aws-s3',
       providerOptions: {
-        accessKeyId: env('AWS_ACCESS_KEY_ID'),
-        secretAccessKey: env('AWS_ACCESS_SECRET'),
-        endpoint: ENDPOINT,
-        params: {
-          Bucket: env('AWS_BUCKET')
+        s3Options: {
+          credentials: {
+            accessKeyId: env('AWS_ACCESS_KEY_ID'),
+            secretAccessKey: env('AWS_ACCESS_SECRET')
+          },
+          endpoint: ENDPOINT,
+          params: {
+            Bucket: env('AWS_BUCKET')
+          }
         }
       },
       actionOptions: {
