@@ -14,9 +14,6 @@
   "attributes": {
     "title": {
       "type": "string"
-    },
-    "ghj": {
-      "type": "integer"
     }
   }
 }

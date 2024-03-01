@@ -688,7 +688,7 @@ export interface ApiAudioImageAudioImage extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    image: Attribute.Media & Attribute.Required
+    image: Attribute.Media
     topics: Attribute.Relation<'api::audio-image.audio-image', 'manyToMany', 'api::topic.topic'>
     audioImages: Attribute.Component<'audio-image-button.audio-image-button', true>
     isLive: Attribute.Boolean & Attribute.Required
@@ -744,7 +744,7 @@ export interface ApiKeywordKeyword extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    image: Attribute.Media & Attribute.Required
+    image: Attribute.Media
     wording_lists: Attribute.Relation<
       'api::keyword.keyword',
       'manyToMany',
@@ -783,7 +783,7 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    cover: Attribute.Media & Attribute.Required
+    cover: Attribute.Media
     downloads: Attribute.Media
     topics: Attribute.Relation<'api::material.material', 'manyToMany', 'api::topic.topic'>
     isLive: Attribute.Boolean & Attribute.Required
@@ -851,7 +851,6 @@ export interface ApiSubcategorySubcategory extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String
-    ghj: Attribute.Integer
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -875,7 +874,7 @@ export interface ApiTopicTopic extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    image: Attribute.Media & Attribute.Required
+    image: Attribute.Media
     isLive: Attribute.Boolean & Attribute.Required
     materials: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::material.material'>
     songs: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::song.song'>
@@ -944,7 +943,7 @@ export interface ApiWordingListWordingList extends Schema.CollectionType {
       'manyToMany',
       'api::keyword.keyword'
     >
-    cover: Attribute.Media & Attribute.Required
+    cover: Attribute.Media
     isLive: Attribute.Boolean & Attribute.Required
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
