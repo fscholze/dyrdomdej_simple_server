@@ -834,6 +834,7 @@ export interface ApiSongSong extends Schema.CollectionType {
     topics: Attribute.Relation<'api::song.song', 'manyToMany', 'api::topic.topic'>
     isLive: Attribute.Boolean & Attribute.Required
     keywords: Attribute.Relation<'api::song.song', 'manyToMany', 'api::keyword.keyword'>
+    categories: Attribute.Component<'category-path.category-path', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

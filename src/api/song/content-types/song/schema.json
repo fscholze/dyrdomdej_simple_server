@@ -57,6 +57,11 @@
       "relation": "manyToMany",
       "target": "api::keyword.keyword",
       "mappedBy": "songs"
+    },
+    "categories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category-path.category-path"
     }
   }
 }
