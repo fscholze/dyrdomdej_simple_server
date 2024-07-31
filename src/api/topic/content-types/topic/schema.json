@@ -63,6 +63,10 @@
       "relation": "manyToMany",
       "target": "api::wording-list.wording-list",
       "mappedBy": "topics"
+    },
+    "sortingKey": {
+      "type": "integer",
+      "default": 999
     }
   }
 }

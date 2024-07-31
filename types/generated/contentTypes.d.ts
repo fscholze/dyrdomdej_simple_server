@@ -895,6 +895,7 @@ export interface ApiTopicTopic extends Schema.CollectionType {
       'manyToMany',
       'api::wording-list.wording-list'
     >
+    sortingKey: Attribute.Integer & Attribute.DefaultTo<999>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
