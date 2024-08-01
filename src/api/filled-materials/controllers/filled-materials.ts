@@ -66,6 +66,7 @@ export default {
         mappedTopic['id'] = key
         mappedTopic['title'] = collectionTopics.get(key).title
         mappedTopic['sortingKey'] = collectionTopics.get(key).sortingKey
+        mappedTopic['color'] = collectionTopics.get(key).color
 
         const mappedCategories = []
         value.forEach((subValue, subKey) => {
