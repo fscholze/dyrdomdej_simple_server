@@ -67,6 +67,11 @@
     "sortingKey": {
       "type": "integer",
       "default": 999
+    },
+    "color": {
+      "type": "string",
+      "default": "#FFFFFF",
+      "maxLength": 7
     }
   }
 }

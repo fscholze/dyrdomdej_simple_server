@@ -896,6 +896,11 @@ export interface ApiTopicTopic extends Schema.CollectionType {
       'api::wording-list.wording-list'
     >
     sortingKey: Attribute.Integer & Attribute.DefaultTo<999>
+    color: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 7
+      }> &
+      Attribute.DefaultTo<'#FFFFFF'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
