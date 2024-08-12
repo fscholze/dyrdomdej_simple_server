@@ -926,6 +926,7 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     isLive: Attribute.Boolean & Attribute.Required
     youtubeLink: Attribute.String & Attribute.Required
     keywords: Attribute.Relation<'api::video.video', 'manyToMany', 'api::keyword.keyword'>
+    categories: Attribute.Component<'category-path.category-path', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
