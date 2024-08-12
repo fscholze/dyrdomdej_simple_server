@@ -44,6 +44,11 @@
     "isLive": {
       "type": "boolean",
       "required": true
+    },
+    "categories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category-path.category-path"
     }
   }
 }

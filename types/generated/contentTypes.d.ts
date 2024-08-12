@@ -956,6 +956,7 @@ export interface ApiWordingListWordingList extends Schema.CollectionType {
     >
     cover: Attribute.Media
     isLive: Attribute.Boolean & Attribute.Required
+    categories: Attribute.Component<'category-path.category-path', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
