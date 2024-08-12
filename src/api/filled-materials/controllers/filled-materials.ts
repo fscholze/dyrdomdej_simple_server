@@ -21,12 +21,56 @@ export default {
         populate: 'categories.topic,categories.category,categories.sub_category'
       })
 
+      const wordingLists = await strapi.entityService.findMany('api::wording-list.wording-list', {
+        filters: {
+          $and: [
+            // {
+            //   isLive: {$eq: true},
+            // },
+            // {
+            //   topics:  {$gt:0}
+            // },
+          ]
+        },
+        populate: 'categories.topic,categories.category,categories.sub_category'
+      })
+
+      const songs = await strapi.entityService.findMany('api::song.song', {
+        filters: {
+          $and: [
+            // {
+            //   isLive: {$eq: true},
+            // },
+            // {
+            //   topics:  {$gt:0}
+            // },
+          ]
+        },
+        populate: 'categories.topic,categories.category,categories.sub_category'
+      })
+
+      const videos = await strapi.entityService.findMany('api::video.video', {
+        filters: {
+          $and: [
+            // {
+            //   isLive: {$eq: true},
+            // },
+            // {
+            //   topics:  {$gt:0}
+            // },
+          ]
+        },
+        populate: 'categories.topic,categories.category,categories.sub_category'
+      })
+
       const mappedTopics = new Map()
       const collectionTopics = new Map()
       const collectionCategories = new Map()
       const collectionSubCategories = new Map()
 
-      await materials.forEach((material) => {
+      const collection = [...materials, ...wordingLists, ...songs, ...videos]
+
+      await collection.forEach((material) => {
         const categories = material.categories
         //      |-cat1
         //        |-cat2
