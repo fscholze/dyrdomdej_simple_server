@@ -76,30 +76,32 @@ export default {
         //        |-cat2
         //          |-cat3
         categories.forEach((item) => {
-          const topicId = item.topic.id
-          const categoryId = item.category.id
-          const subCategoryId = item.sub_category?.id || null
+          if (item.topic && item.category) {
+            const topicId = item.topic.id
+            const categoryId = item.category.id
+            const subCategoryId = item.sub_category?.id || null
 
-          collectionTopics.set(topicId, item.topic)
-          collectionCategories.set(categoryId, item.category)
-          collectionSubCategories.set(subCategoryId, item.sub_category)
+            collectionTopics.set(topicId, item.topic)
+            collectionCategories.set(categoryId, item.category)
+            collectionSubCategories.set(subCategoryId, item.sub_category)
 
-          if (mappedTopics.has(topicId)) {
-            const oldTopicMap = mappedTopics.get(topicId)
-            if (oldTopicMap.has(categoryId)) {
-              const oldCategoryArray = oldTopicMap.get(categoryId)
-              const newCategoryArray = subCategoryId
-                ? addIdToArray(subCategoryId, oldCategoryArray)
-                : oldCategoryArray
-              oldTopicMap.set(categoryId, newCategoryArray)
+            if (mappedTopics.has(topicId)) {
+              const oldTopicMap = mappedTopics.get(topicId)
+              if (oldTopicMap.has(categoryId)) {
+                const oldCategoryArray = oldTopicMap.get(categoryId)
+                const newCategoryArray = subCategoryId
+                  ? addIdToArray(subCategoryId, oldCategoryArray)
+                  : oldCategoryArray
+                oldTopicMap.set(categoryId, newCategoryArray)
+              } else {
+                oldTopicMap.set(categoryId, subCategoryId ? [subCategoryId] : [])
+              }
+              mappedTopics.set(topicId, oldTopicMap)
             } else {
-              oldTopicMap.set(categoryId, subCategoryId ? [subCategoryId] : [])
+              const newCatSubMap = new Map()
+              newCatSubMap.set(categoryId, subCategoryId ? [subCategoryId] : [])
+              mappedTopics.set(topicId, newCatSubMap)
             }
-            mappedTopics.set(topicId, oldTopicMap)
-          } else {
-            const newCatSubMap = new Map()
-            newCatSubMap.set(categoryId, subCategoryId ? [subCategoryId] : [])
-            mappedTopics.set(topicId, newCatSubMap)
           }
         })
       })
