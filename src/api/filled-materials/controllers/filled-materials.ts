@@ -106,6 +106,8 @@ export default {
         })
       })
 
+      const slownikTopic = await strapi.entityService.findOne('api::topic.topic', 54)
+
       const jsonResult = []
       mappedTopics.forEach((value, key) => {
         const mappedTopic = {}
@@ -130,7 +132,18 @@ export default {
         mappedTopic['categories'] = mappedCategories
         jsonResult.push(mappedTopic)
       })
-      ctx.body = { topics: jsonResult }
+      ctx.body = {
+        topics: [
+          ...jsonResult,
+          {
+            id: slownikTopic.id,
+            title: slownikTopic.title,
+            sortingKey: slownikTopic.sortingKey,
+            color: slownikTopic.color,
+            categories: []
+          }
+        ]
+      }
     } catch (err) {
       ctx.body = err
     }
