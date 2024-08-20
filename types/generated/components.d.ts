@@ -1,32 +1,14 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
-export interface AudioImageButtonAudioImageButton extends Schema.Component {
-  collectionName: 'components_audio_img_btn_audio_img_btns'
+export interface WordingLineWordingList extends Schema.Component {
+  collectionName: 'components_wording_line_wording_lists'
   info: {
-    displayName: 'AudioImageButton'
+    displayName: 'WordingListEntry'
     description: ''
   }
   attributes: {
-    text: Attribute.String & Attribute.Required
-    image: Attribute.Media & Attribute.Required
-    sound: Attribute.Media
-    x: Attribute.Decimal &
-      Attribute.SetMinMax<
-        {
-          min: 0
-          max: 100
-        },
-        number
-      >
-    y: Attribute.Decimal &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0
-          max: 100
-        },
-        number
-      >
+    sorbian: Attribute.String & Attribute.Required
+    german: Attribute.String & Attribute.Required
   }
 }
 
@@ -51,24 +33,42 @@ export interface CategoryPathCategoryPath extends Schema.Component {
   }
 }
 
-export interface WordingLineWordingList extends Schema.Component {
-  collectionName: 'components_wording_line_wording_lists'
+export interface AudioImageButtonAudioImageButton extends Schema.Component {
+  collectionName: 'components_audio_img_btn_audio_img_btns'
   info: {
-    displayName: 'WordingListEntry'
+    displayName: 'AudioImageButton'
     description: ''
   }
   attributes: {
-    sorbian: Attribute.String & Attribute.Required
-    german: Attribute.String & Attribute.Required
+    text: Attribute.String & Attribute.Required
+    image: Attribute.Media<'images', true> & Attribute.Required
+    sound: Attribute.Media<'audios', true>
+    x: Attribute.Decimal &
+      Attribute.SetMinMax<
+        {
+          min: 0
+          max: 100
+        },
+        number
+      >
+    y: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0
+          max: 100
+        },
+        number
+      >
   }
 }
 
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'audio-image-button.audio-image-button': AudioImageButtonAudioImageButton
-      'category-path.category-path': CategoryPathCategoryPath
       'wording-line.wording-list': WordingLineWordingList
+      'category-path.category-path': CategoryPathCategoryPath
+      'audio-image-button.audio-image-button': AudioImageButtonAudioImageButton
     }
   }
 }

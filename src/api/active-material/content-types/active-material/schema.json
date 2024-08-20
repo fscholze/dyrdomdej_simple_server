@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "active_materials",
+  "info": {
+    "singularName": "active-material",
+    "pluralName": "active-materials",
+    "displayName": "Aktualne Materialije"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "materials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::material.material"
+    }
+  }
+}

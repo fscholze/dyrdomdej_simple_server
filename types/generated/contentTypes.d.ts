@@ -656,24 +656,36 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   }
 }
 
-export interface ApiActiveTopicActiveTopic extends Schema.SingleType {
-  collectionName: 'active_topics'
+export interface ApiActiveMaterialActiveMaterial extends Schema.SingleType {
+  collectionName: 'active_materials'
   info: {
-    singularName: 'active-topic'
-    pluralName: 'active-topics'
-    displayName: 'Aktualny Tema'
+    singularName: 'active-material'
+    pluralName: 'active-materials'
+    displayName: 'Aktualne Materialije'
   }
   options: {
     draftAndPublish: true
   }
   attributes: {
-    topic: Attribute.Relation<'api::active-topic.active-topic', 'oneToOne', 'api::topic.topic'>
+    materials: Attribute.Relation<
+      'api::active-material.active-material',
+      'oneToMany',
+      'api::material.material'
+    >
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::active-topic.active-topic', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<
+      'api::active-material.active-material',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private
-    updatedBy: Attribute.Relation<'api::active-topic.active-topic', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<
+      'api::active-material.active-material',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private
   }
 }
@@ -691,7 +703,7 @@ export interface ApiAudioImageAudioImage extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    image: Attribute.Media
+    image: Attribute.Media<'images'>
     topics: Attribute.Relation<'api::audio-image.audio-image', 'manyToMany', 'api::topic.topic'>
     audioImages: Attribute.Component<'audio-image-button.audio-image-button', true>
     isLive: Attribute.Boolean & Attribute.Required
@@ -724,7 +736,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   attributes: {
     title: Attribute.String
     deutsch: Attribute.String
-    image: Attribute.Media
+    image: Attribute.Media<'images'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -748,7 +760,7 @@ export interface ApiKeywordKeyword extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    image: Attribute.Media
+    image: Attribute.Media<'images'>
     wording_lists: Attribute.Relation<
       'api::keyword.keyword',
       'manyToMany',
@@ -787,8 +799,8 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    cover: Attribute.Media
-    downloads: Attribute.Media
+    cover: Attribute.Media<'images'>
+    downloads: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>
     topics: Attribute.Relation<'api::material.material', 'manyToMany', 'api::topic.topic'>
     isLive: Attribute.Boolean & Attribute.Required
     text: Attribute.RichText &
@@ -822,7 +834,7 @@ export interface ApiSongSong extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    downloads: Attribute.Media
+    downloads: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>
     text: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -830,7 +842,7 @@ export interface ApiSongSong extends Schema.CollectionType {
           preset: 'toolbar'
         }
       >
-    cover: Attribute.Media & Attribute.Required
+    cover: Attribute.Media<'images'> & Attribute.Required
     topics: Attribute.Relation<'api::song.song', 'manyToMany', 'api::topic.topic'>
     isLive: Attribute.Boolean & Attribute.Required
     keywords: Attribute.Relation<'api::song.song', 'manyToMany', 'api::keyword.keyword'>
@@ -879,7 +891,7 @@ export interface ApiTopicTopic extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    image: Attribute.Media
+    image: Attribute.Media<'images'>
     isLive: Attribute.Boolean & Attribute.Required
     materials: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::material.material'>
     songs: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::song.song'>
@@ -955,7 +967,7 @@ export interface ApiWordingListWordingList extends Schema.CollectionType {
       'manyToMany',
       'api::keyword.keyword'
     >
-    cover: Attribute.Media
+    cover: Attribute.Media<'images'>
     isLive: Attribute.Boolean & Attribute.Required
     categories: Attribute.Component<'category-path.category-path', true>
     createdAt: Attribute.DateTime
@@ -986,7 +998,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
-      'api::active-topic.active-topic': ApiActiveTopicActiveTopic
+      'api::active-material.active-material': ApiActiveMaterialActiveMaterial
       'api::audio-image.audio-image': ApiAudioImageAudioImage
       'api::category.category': ApiCategoryCategory
       'api::keyword.keyword': ApiKeywordKeyword
