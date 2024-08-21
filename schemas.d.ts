@@ -482,23 +482,35 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   }
 }
 
-export interface ApiActiveTopicActiveTopic extends SingleTypeSchema {
+export interface ApiActiveMaterialActiveMaterial extends SingleTypeSchema {
   info: {
-    singularName: 'active-topic'
-    pluralName: 'active-topics'
-    displayName: 'Aktualny Tema'
+    singularName: 'active-material'
+    pluralName: 'active-materials'
+    displayName: 'Aktualny Material'
   }
   options: {
     draftAndPublish: true
   }
   attributes: {
-    topic: RelationAttribute<'api::active-topic.active-topic', 'oneToOne', 'api::topic.topic'>
+    material: RelationAttribute<
+      'api::active-material.active-material',
+      'oneToOne',
+      'api::material.material'
+    >
     createdAt: DateTimeAttribute
     updatedAt: DateTimeAttribute
     publishedAt: DateTimeAttribute
-    createdBy: RelationAttribute<'api::active-topic.active-topic', 'oneToOne', 'admin::user'> &
+    createdBy: RelationAttribute<
+      'api::active-material.active-material',
+      'oneToOne',
+      'admin::user'
+    > &
       PrivateAttribute
-    updatedBy: RelationAttribute<'api::active-topic.active-topic', 'oneToOne', 'admin::user'> &
+    updatedBy: RelationAttribute<
+      'api::active-material.active-material',
+      'oneToOne',
+      'admin::user'
+    > &
       PrivateAttribute
   }
 }
@@ -776,7 +788,7 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
-      'api::active-topic.active-topic': ApiActiveTopicActiveTopic
+      'api::active-Material.active-Material': ApiActiveMaterialActiveMaterial
       'api::audio-image.audio-image': ApiAudioImageAudioImage
       'api::keyword.keyword': ApiKeywordKeyword
       'api::material.material': ApiMaterialMaterial
