@@ -788,7 +788,7 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
-      'api::active-Material.active-Material': ApiActiveMaterialActiveMaterial
+      'api::active-material.active-material': ApiActiveMaterialActiveMaterial
       'api::audio-image.audio-image': ApiAudioImageAudioImage
       'api::keyword.keyword': ApiKeywordKeyword
       'api::material.material': ApiMaterialMaterial
