@@ -821,6 +821,30 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
   }
 }
 
+export interface ApiPartnerPartner extends Schema.CollectionType {
+  collectionName: 'partners'
+  info: {
+    singularName: 'partner'
+    pluralName: 'partners'
+    displayName: 'Partnerojo'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    name: Attribute.String
+    link: Attribute.String
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::partner.partner', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::partner.partner', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
 export interface ApiSongSong extends Schema.CollectionType {
   collectionName: 'songs'
   info: {
@@ -1003,6 +1027,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory
       'api::keyword.keyword': ApiKeywordKeyword
       'api::material.material': ApiMaterialMaterial
+      'api::partner.partner': ApiPartnerPartner
       'api::song.song': ApiSongSong
       'api::subcategory.subcategory': ApiSubcategorySubcategory
       'api::topic.topic': ApiTopicTopic
