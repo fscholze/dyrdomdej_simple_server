@@ -482,39 +482,6 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   }
 }
 
-export interface ApiActiveMaterialActiveMaterial extends SingleTypeSchema {
-  info: {
-    singularName: 'active-material'
-    pluralName: 'active-materials'
-    displayName: 'Aktualny Material'
-  }
-  options: {
-    draftAndPublish: true
-  }
-  attributes: {
-    material: RelationAttribute<
-      'api::active-material.active-material',
-      'oneToOne',
-      'api::material.material'
-    >
-    createdAt: DateTimeAttribute
-    updatedAt: DateTimeAttribute
-    publishedAt: DateTimeAttribute
-    createdBy: RelationAttribute<
-      'api::active-material.active-material',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute
-    updatedBy: RelationAttribute<
-      'api::active-material.active-material',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute
-  }
-}
-
 export interface ApiAudioImageAudioImage extends CollectionTypeSchema {
   info: {
     singularName: 'audio-image'
@@ -788,7 +755,6 @@ declare global {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
-      'api::active-material.active-material': ApiActiveMaterialActiveMaterial
       'api::audio-image.audio-image': ApiAudioImageAudioImage
       'api::keyword.keyword': ApiKeywordKeyword
       'api::material.material': ApiMaterialMaterial

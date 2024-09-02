@@ -656,40 +656,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   }
 }
 
-export interface ApiActiveMaterialActiveMaterial extends Schema.SingleType {
-  collectionName: 'active_materials'
-  info: {
-    singularName: 'active-material'
-    pluralName: 'active-materials'
-    displayName: 'Aktualne Materialije'
-  }
-  options: {
-    draftAndPublish: true
-  }
-  attributes: {
-    materials: Attribute.Relation<
-      'api::active-material.active-material',
-      'oneToMany',
-      'api::material.material'
-    >
-    createdAt: Attribute.DateTime
-    updatedAt: Attribute.DateTime
-    publishedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<
-      'api::active-material.active-material',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private
-    updatedBy: Attribute.Relation<
-      'api::active-material.active-material',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private
-  }
-}
-
 export interface ApiAudioImageAudioImage extends Schema.CollectionType {
   collectionName: 'audio_images'
   info: {
@@ -1023,7 +989,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
-      'api::active-material.active-material': ApiActiveMaterialActiveMaterial
       'api::audio-image.audio-image': ApiAudioImageAudioImage
       'api::category.category': ApiCategoryCategory
       'api::keyword.keyword': ApiKeywordKeyword
