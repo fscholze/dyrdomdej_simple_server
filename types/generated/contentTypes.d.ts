@@ -827,6 +827,7 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
     singularName: 'partner'
     pluralName: 'partners'
     displayName: 'Partnerojo'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -834,7 +835,7 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
   attributes: {
     name: Attribute.String
     link: Attribute.String
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
