@@ -54,39 +54,68 @@ export default {
 
       for (let index = 0; index < ((materials as any[]).length as number); index++) {
         const material = materials[index]
-
-        if (material.title?.toLowerCase().includes(searchWord)) {
-          filteredMaterials.push(material)
-        } else if (material.text?.toLowerCase().includes(searchWord)) {
-          filteredMaterials.push(material)
-        } else if (material.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
-          filteredMaterials.push(material)
-        }
+        filteredMaterials.push(material)
+        //   if (material.title?.toLowerCase().includes(searchWord)) {
+        //     filteredMaterials.push(material)
+        //   } else if (material.text?.toLowerCase().includes(searchWord)) {
+        //     filteredMaterials.push(material)
+        //   } else if (material.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
+        //     filteredMaterials.push(material)
+        //   }
       }
 
       const filteredSongs = []
       for (let index = 0; index < (songs.length as number); index++) {
         const song = songs[index]
-        if (song.title?.toLowerCase().includes(searchWord)) {
-          filteredSongs.push(song)
-        } else if (song.text?.toLowerCase().includes(searchWord)) {
-          filteredSongs.push(song)
-        } else if (song.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
-          filteredSongs.push(song)
-        }
+        filteredSongs.push(song)
+        //   if (song.title?.toLowerCase().includes(searchWord)) {
+        //     filteredSongs.push(song)
+        //   } else if (song.text?.toLowerCase().includes(searchWord)) {
+        //     filteredSongs.push(song)
+        //   } else if (song.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
+        //     filteredSongs.push(song)
+        //   }
       }
 
       const filteredVideos = []
       for (let index = 0; index < (videos.length as number); index++) {
         const video = videos[index]
-        if (video.title?.toLowerCase().includes(searchWord)) {
-          filteredVideos.push(video)
-        } else if (video.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
-          filteredVideos.push(video)
-        }
+        filteredVideos.push(video)
+        //   if (video.title?.toLowerCase().includes(searchWord)) {
+        //     filteredVideos.push(video)
+        //   } else if (video.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
+        //     filteredVideos.push(video)
+        //   }
       }
 
-      ctx.body = { materials: filteredMaterials, songs: filteredSongs, videos: filteredVideos }
+      ctx.body = {
+        materials: filteredMaterials.map((s) => ({
+          id: s.id,
+          attributes: {
+            ...s,
+            cover: { data: { attributes: s.cover } },
+            downloads: s.downloads
+              ? s.downloads.map((d) => ({ data: { attributes: d } }))
+              : { data: null }
+          }
+        })),
+        songs: filteredSongs.map((s) => ({
+          id: s.id,
+          attributes: {
+            ...s,
+            cover: { data: { attributes: s.cover } },
+            downloads: s.downloads
+              ? s.downloads.map((d) => ({ data: { attributes: d } }))
+              : { data: null }
+          }
+        })),
+        videos: filteredVideos.map((s) => ({
+          id: s.id,
+          attributes: {
+            ...s
+          }
+        }))
+      }
     } catch (err) {
       ctx.body = err
     }
