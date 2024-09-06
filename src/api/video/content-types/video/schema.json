@@ -16,12 +16,6 @@
       "type": "string",
       "required": true
     },
-    "topics": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::topic.topic",
-      "inversedBy": "videos"
-    },
     "isLive": {
       "type": "boolean",
       "required": true

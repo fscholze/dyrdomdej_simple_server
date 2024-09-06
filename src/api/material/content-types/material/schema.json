@@ -35,12 +35,6 @@
         "audios"
       ]
     },
-    "topics": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::topic.topic",
-      "inversedBy": "materials"
-    },
     "isLive": {
       "type": "boolean",
       "required": true

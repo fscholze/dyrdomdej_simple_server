@@ -28,40 +28,10 @@
       "type": "boolean",
       "required": true
     },
-    "materials": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::material.material",
-      "mappedBy": "topics"
-    },
-    "songs": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::song.song",
-      "mappedBy": "topics"
-    },
-    "videos": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::video.video",
-      "mappedBy": "topics"
-    },
-    "audio_images": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::audio-image.audio-image",
-      "mappedBy": "topics"
-    },
     "keywords": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::keyword.keyword",
-      "mappedBy": "topics"
-    },
-    "wording_lists": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::wording-list.wording-list",
       "mappedBy": "topics"
     },
     "sortingKey": {

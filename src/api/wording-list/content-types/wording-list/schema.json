@@ -16,12 +16,6 @@
       "type": "string",
       "required": true
     },
-    "topics": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::topic.topic",
-      "inversedBy": "wording_lists"
-    },
     "words": {
       "type": "component",
       "repeatable": true,

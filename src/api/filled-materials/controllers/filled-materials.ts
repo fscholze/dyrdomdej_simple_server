@@ -132,18 +132,20 @@ export default {
         mappedTopic['categories'] = mappedCategories
         jsonResult.push(mappedTopic)
       })
-      ctx.body = {
-        topics: [
-          ...jsonResult,
-          {
-            id: slownikTopic.id,
-            title: slownikTopic.title,
-            sortingKey: slownikTopic.sortingKey,
-            color: slownikTopic.color,
-            categories: []
-          }
-        ]
+      const result = {
+        topics: [...jsonResult]
       }
+
+      if (slownikTopic)
+        result.topics.push({
+          id: slownikTopic.id,
+          title: slownikTopic.title,
+          sortingKey: slownikTopic.sortingKey,
+          color: slownikTopic.color,
+          categories: []
+        })
+
+      ctx.body = result
     } catch (err) {
       ctx.body = err
     }

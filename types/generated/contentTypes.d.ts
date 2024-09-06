@@ -661,7 +661,7 @@ export interface ApiActiveMaterialActiveMaterial extends Schema.SingleType {
   info: {
     singularName: 'active-material'
     pluralName: 'active-materials'
-    displayName: 'Aktualne Materialije'
+    displayName: 'active-material'
     description: ''
   }
   options: {
@@ -705,7 +705,6 @@ export interface ApiAudioImageAudioImage extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     image: Attribute.Media<'images'>
-    topics: Attribute.Relation<'api::audio-image.audio-image', 'manyToMany', 'api::topic.topic'>
     audioImages: Attribute.Component<'audio-image-button.audio-image-button', true>
     isLive: Attribute.Boolean & Attribute.Required
     keywords: Attribute.Relation<
@@ -802,7 +801,6 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required
     cover: Attribute.Media<'images'>
     downloads: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>
-    topics: Attribute.Relation<'api::material.material', 'manyToMany', 'api::topic.topic'>
     isLive: Attribute.Boolean & Attribute.Required
     text: Attribute.RichText &
       Attribute.CustomField<
@@ -869,7 +867,6 @@ export interface ApiSongSong extends Schema.CollectionType {
         }
       >
     cover: Attribute.Media<'images'> & Attribute.Required
-    topics: Attribute.Relation<'api::song.song', 'manyToMany', 'api::topic.topic'>
     isLive: Attribute.Boolean & Attribute.Required
     keywords: Attribute.Relation<'api::song.song', 'manyToMany', 'api::keyword.keyword'>
     categories: Attribute.Component<'category-path.category-path', true>
@@ -919,20 +916,7 @@ export interface ApiTopicTopic extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required
     image: Attribute.Media<'images'>
     isLive: Attribute.Boolean & Attribute.Required
-    materials: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::material.material'>
-    songs: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::song.song'>
-    videos: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::video.video'>
-    audio_images: Attribute.Relation<
-      'api::topic.topic',
-      'manyToMany',
-      'api::audio-image.audio-image'
-    >
     keywords: Attribute.Relation<'api::topic.topic', 'manyToMany', 'api::keyword.keyword'>
-    wording_lists: Attribute.Relation<
-      'api::topic.topic',
-      'manyToMany',
-      'api::wording-list.wording-list'
-    >
     sortingKey: Attribute.Integer & Attribute.DefaultTo<999>
     color: Attribute.String &
       Attribute.SetMinMaxLength<{
@@ -960,7 +944,6 @@ export interface ApiVideoVideo extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    topics: Attribute.Relation<'api::video.video', 'manyToMany', 'api::topic.topic'>
     isLive: Attribute.Boolean & Attribute.Required
     youtubeLink: Attribute.String & Attribute.Required
     keywords: Attribute.Relation<'api::video.video', 'manyToMany', 'api::keyword.keyword'>
@@ -986,7 +969,6 @@ export interface ApiWordingListWordingList extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    topics: Attribute.Relation<'api::wording-list.wording-list', 'manyToMany', 'api::topic.topic'>
     words: Attribute.Component<'wording-line.wording-list', true>
     keywords: Attribute.Relation<
       'api::wording-list.wording-list',
