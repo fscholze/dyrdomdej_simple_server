@@ -2,6 +2,8 @@
  * A set of functions called "actions" for `search`
  */
 
+import { isSimilar } from '../../../helper/parse-strings'
+
 export default {
   findAll: async (ctx, next) => {
     try {
@@ -14,12 +16,9 @@ export default {
             // {
             //   isLive: {$eq: true},
             // },
-            // {
-            //   topics:  {$gt:0}
-            // },
           ]
         },
-        populate: '*'
+        populate: ['keywords.title', 'categories.topic', 'categories.category']
       })
 
       const songs = await strapi.entityService.findMany('api::song.song', {
@@ -28,12 +27,9 @@ export default {
             // {
             //   isLive: {$eq: true},
             // },
-            // {
-            //   topics:  {$gt:0}
-            // },
           ]
         },
-        populate: '*'
+        populate: ['keywords.title', 'categories.topic', 'categories.category']
       })
 
       const videos = await strapi.entityService.findMany('api::video.video', {
@@ -42,50 +38,89 @@ export default {
             // {
             //   isLive: {$eq: true},
             // },
+          ]
+        },
+        populate: ['keywords.title', 'categories.topic', 'categories.category']
+      })
+
+      const wordingLists = await strapi.entityService.findMany('api::wording-list.wording-list', {
+        filters: {
+          $and: [
             // {
-            //   topics:  {$gt:0}
+            //   isLive: {$eq: true},
             // },
           ]
         },
-        populate: '*'
+        populate: ['keywords.title', 'categories.topic', 'categories.category']
       })
 
       const filteredMaterials = []
 
-      for (let index = 0; index < ((materials as any[]).length as number); index++) {
+      for (let index = 0; index < materials.length; index++) {
         const material = materials[index]
-        filteredMaterials.push(material)
-        //   if (material.title?.toLowerCase().includes(searchWord)) {
-        //     filteredMaterials.push(material)
-        //   } else if (material.text?.toLowerCase().includes(searchWord)) {
-        //     filteredMaterials.push(material)
-        //   } else if (material.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
-        //     filteredMaterials.push(material)
-        //   }
+        if (isSimilar(material.title, searchWord)) {
+          filteredMaterials.push(material)
+        } else if (isSimilar(material.text, searchWord)) {
+          filteredMaterials.push(material)
+        } else if (
+          material.categories.find(
+            (c) => isSimilar(c.topic?.title, searchWord) || isSimilar(c.category?.title, searchWord)
+          )
+        ) {
+          filteredMaterials.push(material)
+        } else if (material.keywords.find((c) => isSimilar(c.title, searchWord))) {
+          filteredMaterials.push(material)
+        }
       }
 
       const filteredSongs = []
-      for (let index = 0; index < (songs.length as number); index++) {
+      for (let index = 0; index < songs.length; index++) {
         const song = songs[index]
-        filteredSongs.push(song)
-        //   if (song.title?.toLowerCase().includes(searchWord)) {
-        //     filteredSongs.push(song)
-        //   } else if (song.text?.toLowerCase().includes(searchWord)) {
-        //     filteredSongs.push(song)
-        //   } else if (song.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
-        //     filteredSongs.push(song)
-        //   }
+        if (isSimilar(song.title, searchWord)) {
+          filteredSongs.push(song)
+        } else if (isSimilar(song.text, searchWord)) {
+          filteredSongs.push(song)
+        } else if (
+          song.categories.find(
+            (c) => isSimilar(c.topic?.title, searchWord) || isSimilar(c.category?.title, searchWord)
+          )
+        ) {
+          filteredSongs.push(song)
+        } else if (song.keywords.find((c) => isSimilar(c.title, searchWord))) {
+          filteredSongs.push(song)
+        }
       }
 
       const filteredVideos = []
-      for (let index = 0; index < (videos.length as number); index++) {
+      for (let index = 0; index < videos.length; index++) {
         const video = videos[index]
-        filteredVideos.push(video)
-        //   if (video.title?.toLowerCase().includes(searchWord)) {
-        //     filteredVideos.push(video)
-        //   } else if (video.topics?.find((t) => t.title?.toLowerCase().includes(searchWord))) {
-        //     filteredVideos.push(video)
-        //   }
+        if (isSimilar(video.title, searchWord)) {
+          filteredVideos.push(video)
+        } else if (
+          video.categories.find(
+            (c) => isSimilar(c.topic?.title, searchWord) || isSimilar(c.category?.title, searchWord)
+          )
+        ) {
+          filteredVideos.push(video)
+        } else if (video.keywords.find((c) => isSimilar(c.title, searchWord))) {
+          filteredVideos.push(video)
+        }
+      }
+
+      const filteredWordingLists = []
+      for (let index = 0; index < wordingLists.length; index++) {
+        const wordingList = wordingLists[index]
+        if (isSimilar(wordingList.title, searchWord)) {
+          filteredWordingLists.push(wordingList)
+        } else if (
+          wordingList.categories.find(
+            (c) => isSimilar(c.topic?.title, searchWord) || isSimilar(c.category?.title, searchWord)
+          )
+        ) {
+          filteredWordingLists.push(wordingList)
+        } else if (wordingList.keywords.find((c) => isSimilar(c.title, searchWord))) {
+          filteredWordingLists.push(wordingList)
+        }
       }
 
       ctx.body = {
@@ -113,6 +148,16 @@ export default {
           id: s.id,
           attributes: {
             ...s
+          }
+        })),
+        wordingLists: filteredWordingLists.map((s) => ({
+          id: s.id,
+          attributes: {
+            ...s,
+            cover: { data: { attributes: s.cover } },
+            downloads: s.downloads
+              ? s.downloads.map((d) => ({ data: { attributes: d } }))
+              : { data: null }
           }
         }))
       }
