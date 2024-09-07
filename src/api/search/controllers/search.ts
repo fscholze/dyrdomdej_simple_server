@@ -18,7 +18,7 @@ export default {
             // },
           ]
         },
-        populate: ['keywords.title', 'categories.topic', 'categories.category']
+        populate: ['keywords.title', 'categories.topic', 'categories.category', 'cover.*']
       })
 
       const songs = await strapi.entityService.findMany('api::song.song', {
@@ -29,7 +29,7 @@ export default {
             // },
           ]
         },
-        populate: ['keywords.title', 'categories.topic', 'categories.category']
+        populate: ['keywords.title', 'categories.topic', 'categories.category', 'cover.*']
       })
 
       const videos = await strapi.entityService.findMany('api::video.video', {
@@ -40,7 +40,7 @@ export default {
             // },
           ]
         },
-        populate: ['keywords.title', 'categories.topic', 'categories.category']
+        populate: ['keywords.title', 'categories.topic', 'categories.category', 'cover.*']
       })
 
       const wordingLists = await strapi.entityService.findMany('api::wording-list.wording-list', {
@@ -51,7 +51,13 @@ export default {
             // },
           ]
         },
-        populate: ['keywords.title', 'categories.topic', 'categories.category']
+        populate: [
+          'keywords.title',
+          'categories.topic',
+          'categories.category',
+          'words.*',
+          'cover.*'
+        ]
       })
 
       const filteredMaterials = []
@@ -123,6 +129,7 @@ export default {
         }
       }
 
+      console.log({ filteredWordingLists, wordingLists })
       ctx.body = {
         materials: filteredMaterials.map((s) => ({
           id: s.id,
@@ -155,6 +162,7 @@ export default {
           attributes: {
             ...s,
             cover: { data: { attributes: s.cover } },
+            words: s.words,
             downloads: s.downloads
               ? s.downloads.map((d) => ({ data: { attributes: d } }))
               : { data: null }
