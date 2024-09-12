@@ -61,13 +61,12 @@ export default {
       })
 
       const filteredMaterials = []
-
       for (let index = 0; index < materials.length; index++) {
         const material = materials[index]
         if (isSimilar(material.title, searchWord)) {
           filteredMaterials.push(material)
-        } else if (isSimilar(material.text, searchWord)) {
-          filteredMaterials.push(material)
+          // } else if (isSimilar(material.text, searchWord)) {
+          //   filteredMaterials.push(material)
         } else if (
           material.categories.find(
             (c) => isSimilar(c.topic?.title, searchWord) || isSimilar(c.category?.title, searchWord)
@@ -129,7 +128,6 @@ export default {
         }
       }
 
-      console.log({ filteredWordingLists, wordingLists })
       ctx.body = {
         materials: filteredMaterials.map((s) => ({
           id: s.id,
