@@ -835,6 +835,7 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
     name: Attribute.String
     link: Attribute.String
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>
+    description: Attribute.Text
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
