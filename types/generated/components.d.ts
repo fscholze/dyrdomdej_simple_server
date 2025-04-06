@@ -41,9 +41,10 @@ export interface AudioImageButtonAudioImageButton extends Schema.Component {
   }
   attributes: {
     text: Attribute.String & Attribute.Required
-    image: Attribute.Media<'images', true> & Attribute.Required
-    sound: Attribute.Media<'audios', true>
+    image: Attribute.Media<'images'>
+    sound: Attribute.Media<'audios'> & Attribute.Required
     x: Attribute.Decimal &
+      Attribute.Required &
       Attribute.SetMinMax<
         {
           min: 0
