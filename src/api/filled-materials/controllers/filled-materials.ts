@@ -150,7 +150,7 @@ export default {
       // Add Wimmelbilder menu point
       result.topics.push({
         id: 'WIMMELWOBRAZY',
-        title: 'Wimmelbilder',
+        title: 'Prašak',
         sortingKey: 999, // Place at the end of the menu
         categories: audioImages.map((image) => ({
           id: image.id,
