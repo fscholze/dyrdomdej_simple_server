@@ -63,6 +63,8 @@ export default {
         populate: 'categories.topic,categories.category,categories.sub_category'
       })
 
+      const audioImages = await strapi.entityService.findMany('api::audio-image.audio-image')
+
       const mappedTopics = new Map()
       const collectionTopics = new Map()
       const collectionCategories = new Map()
@@ -144,6 +146,18 @@ export default {
           color: slownikTopic.color,
           categories: []
         })
+
+      // Add Wimmelbilder menu point
+      result.topics.push({
+        id: 'WIMMELWOBRAZY',
+        title: 'Wimmelbilder',
+        sortingKey: 999, // Place at the end of the menu
+        color: '#000000', // Default black color
+        categories: audioImages.map((image) => ({
+          id: image.id,
+          title: image.title || `Wimmelbild ${image.id}`
+        }))
+      })
 
       ctx.body = result
     } catch (err) {
