@@ -152,7 +152,6 @@ export default {
         id: 'WIMMELWOBRAZY',
         title: 'Wimmelbilder',
         sortingKey: 999, // Place at the end of the menu
-        color: '#000000', // Default black color
         categories: audioImages.map((image) => ({
           id: image.id,
           title: image.title || `Wimmelbild ${image.id}`
