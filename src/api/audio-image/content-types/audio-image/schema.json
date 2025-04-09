@@ -38,6 +38,11 @@
       "relation": "manyToMany",
       "target": "api::keyword.keyword",
       "mappedBy": "audio_images"
+    },
+    "categories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category-path.category-path"
     }
   }
 }

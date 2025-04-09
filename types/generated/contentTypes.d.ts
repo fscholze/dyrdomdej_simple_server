@@ -712,6 +712,7 @@ export interface ApiAudioImageAudioImage extends Schema.CollectionType {
       'manyToMany',
       'api::keyword.keyword'
     >
+    categories: Attribute.Component<'category-path.category-path', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
