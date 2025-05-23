@@ -4,6 +4,8 @@ const addIdToArray = (id: any, collection: any[]) => {
   return _.uniq([...collection, id])
 }
 
+const WIMMELBILD_ID = 999
+
 export default {
   topics: async (ctx, next) => {
     try {
@@ -149,7 +151,7 @@ export default {
 
       // Add Wimmelbilder menu point
       result.topics.push({
-        id: 'WIMMELWOBRAZY',
+        id: WIMMELBILD_ID, // Using a numeric ID that won't conflict with other topics
         title: 'Prašak',
         sortingKey: 999, // Place at the end of the menu
         categories: audioImages.map((image) => ({
