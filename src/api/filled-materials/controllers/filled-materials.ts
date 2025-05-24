@@ -65,14 +65,16 @@ export default {
         populate: 'categories.topic,categories.category,categories.sub_category'
       })
 
-      const audioImages = await strapi.entityService.findMany('api::audio-image.audio-image')
+      const audioImages = await strapi.entityService.findMany('api::audio-image.audio-image', {
+        populate: 'categories.topic,categories.category,categories.sub_category'
+      })
 
       const mappedTopics = new Map()
       const collectionTopics = new Map()
       const collectionCategories = new Map()
       const collectionSubCategories = new Map()
 
-      const collection = [...materials, ...wordingLists, ...songs, ...videos]
+      const collection = [...materials, ...wordingLists, ...songs, ...videos, ...audioImages]
 
       await collection.forEach((material) => {
         const categories = material.categories
