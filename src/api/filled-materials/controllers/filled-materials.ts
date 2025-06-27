@@ -151,17 +151,6 @@ export default {
           categories: []
         })
 
-      // Add Wimmelbilder menu point
-      result.topics.push({
-        id: WIMMELBILD_ID, // Using a numeric ID that won't conflict with other topics
-        title: 'Prašak',
-        sortingKey: 999, // Place at the end of the menu
-        categories: audioImages.map((image) => ({
-          id: image.id,
-          title: image.title || `Wimmelbild ${image.id}`
-        }))
-      })
-
       ctx.body = result
     } catch (err) {
       ctx.body = err
